@@ -17,6 +17,8 @@ jobs:
         with:
           node-version: 20
           registry-url: "https://registry.npmjs.org/"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_MINI_LIBRARY }}
 
       - name: Install dependencies
         run: npm install
@@ -24,7 +26,7 @@ jobs:
       - name: Publish to npm
         run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_MINI_LIBRARY }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
